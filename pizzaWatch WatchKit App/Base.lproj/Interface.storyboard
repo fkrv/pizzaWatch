@@ -1,15 +1,156 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="6221" systemVersion="13E28" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6213"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="9515"/>
     </dependencies>
     <scenes>
         <!--Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModuleProvider="target"/>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="pizzaWatch_WatchKit_App" customModuleProvider="target">
+                    <items>
+                        <label alignment="center" text="Tamaño" id="7Pc-iI-cJp"/>
+                        <picker height="80" alignment="left" id="sVf-1i-Vto">
+                            <connections>
+                                <action selector="pickerSelectedItemChanged:" destination="AgC-eL-Hgc" id="jfc-3Y-Qt5"/>
+                            </connections>
+                        </picker>
+                        <separator alignment="left" verticalAlignment="bottom" id="Cuo-AH-goH"/>
+                        <button width="1" alignment="left" verticalAlignment="bottom" title="Masa &gt;" id="Bl5-M7-QfT">
+                            <connections>
+                                <action selector="mostrarMasa" destination="AgC-eL-Hgc" id="SaJ-vn-0o6"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="pickerView" destination="sVf-1i-Vto" id="j7p-VA-wqE"/>
+                    </connections>
+                </controller>
             </objects>
+            <point key="canvasLocation" x="128" y="306"/>
+        </scene>
+        <!--IdentificadorMasa-->
+        <scene sceneID="02E-eo-EML">
+            <objects>
+                <controller identifier="IdentificadorMasa" id="D08-q9-a3Z" customClass="VistaMasa" customModule="pizzaWatch_WatchKit_Extension">
+                    <items>
+                        <label alignment="center" text="Masa" id="iAY-eT-krZ"/>
+                        <picker height="80" alignment="left" id="iAU-yD-nrb">
+                            <connections>
+                                <action selector="pickerSelectedItemChanged:" destination="D08-q9-a3Z" id="4CB-qN-ByD"/>
+                            </connections>
+                        </picker>
+                        <separator alignment="left" verticalAlignment="bottom" id="ykr-N8-5WC"/>
+                        <button width="1" alignment="left" verticalAlignment="bottom" title="Queso &gt;" id="QY1-Ok-xJR">
+                            <connections>
+                                <action selector="mostrarQueso" destination="D08-q9-a3Z" id="fZP-E8-mru"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="pickerView" destination="iAU-yD-nrb" id="61e-id-Gvc"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="352" y="306"/>
+        </scene>
+        <!--IdentificadorQueso-->
+        <scene sceneID="5eA-O6-Qtq">
+            <objects>
+                <controller identifier="IdentificadorQueso" id="4Bk-4D-ang" customClass="VistaQueso" customModule="pizzaWatch_WatchKit_Extension">
+                    <items>
+                        <label alignment="center" text="Queso" id="udc-sY-GMg"/>
+                        <picker height="80" alignment="left" id="TBC-Vj-c86">
+                            <connections>
+                                <action selector="pickerSelectedItemChanged:" destination="4Bk-4D-ang" id="YyJ-Gr-u6v"/>
+                            </connections>
+                        </picker>
+                        <separator alignment="left" verticalAlignment="bottom" id="NyS-Zl-uZX"/>
+                        <button width="1" alignment="left" verticalAlignment="bottom" title="Ingredientes &gt;" id="SGm-3Z-5Fk">
+                            <connections>
+                                <action selector="mostrarMasa" destination="4Bk-4D-ang" id="SAY-mf-AIa"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="pickerView" destination="TBC-Vj-c86" id="OOe-jO-npr"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="563" y="306"/>
+        </scene>
+        <!--IdentificadorIngredientes-->
+        <scene sceneID="8ry-LV-hC5">
+            <objects>
+                <controller identifier="IdentificadorIngredientes" id="2Cv-jY-do6" customClass="VistaIngredientes" customModule="pizzaWatch_WatchKit_Extension">
+                    <items>
+                        <slider width="1" height="30" alignment="left" hidden="YES" steps="1" id="qew-mZ-lhL">
+                            <connections>
+                                <action selector="agregarIngrediente:" destination="2Cv-jY-do6" id="nDp-Vb-iP4"/>
+                            </connections>
+                        </slider>
+                        <slider width="1" height="30" alignment="left" hidden="YES" steps="1" id="Mbd-uC-je0">
+                            <connections>
+                                <action selector="agregarIngrediente:" destination="2Cv-jY-do6" id="zSx-Tf-zRr"/>
+                            </connections>
+                        </slider>
+                        <slider width="1" height="30" alignment="left" hidden="YES" steps="1" id="hMR-zD-ZCH">
+                            <connections>
+                                <action selector="agregarIngrediente:" destination="2Cv-jY-do6" id="w0a-f7-405"/>
+                            </connections>
+                        </slider>
+                        <slider width="1" height="30" alignment="left" hidden="YES" steps="1" id="nMu-tw-4ev">
+                            <connections>
+                                <action selector="agregarIngrediente:" destination="2Cv-jY-do6" id="ZoP-2E-FYp"/>
+                            </connections>
+                        </slider>
+                        <slider width="1" height="30" alignment="left" hidden="YES" steps="1" id="2AB-Ca-1uc">
+                            <connections>
+                                <action selector="agregarIngrediente:" destination="2Cv-jY-do6" id="zCP-k3-XBm"/>
+                            </connections>
+                        </slider>
+                        <slider width="1" height="30" alignment="left" hidden="YES" steps="1" id="vgt-wx-psh">
+                            <connections>
+                                <action selector="agregarIngrediente:" destination="2Cv-jY-do6" id="e40-Pr-hyO"/>
+                            </connections>
+                        </slider>
+                        <slider width="1" height="30" alignment="left" hidden="YES" steps="1" id="CPq-oa-Qpr">
+                            <connections>
+                                <action selector="agregarIngrediente:" destination="2Cv-jY-do6" id="2GK-nX-fZf"/>
+                            </connections>
+                        </slider>
+                        <slider width="1" height="30" alignment="left" hidden="YES" steps="1" id="ydt-vw-5gh">
+                            <connections>
+                                <action selector="agregarIngrediente:" destination="2Cv-jY-do6" id="Szq-rx-zSP"/>
+                            </connections>
+                        </slider>
+                        <picker height="80" alignment="left" id="F28-Ux-EDQ">
+                            <connections>
+                                <action selector="pickerSelectedItemChanged:" destination="2Cv-jY-do6" id="oAL-5q-OHY"/>
+                            </connections>
+                        </picker>
+                        <button width="1" height="30" alignment="left" verticalAlignment="bottom" hidden="YES" title="Ordenar" id="O5d-no-puv">
+                            <connections>
+                                <action selector="ordenar" destination="2Cv-jY-do6" id="ITu-ct-E1G"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="aceituna" destination="nMu-tw-4ev" id="FLx-dU-xe8"/>
+                        <outlet property="anchoa" destination="ydt-vw-5gh" id="xVj-VZ-QEU"/>
+                        <outlet property="cebolla" destination="2AB-Ca-1uc" id="W6I-tf-cKh"/>
+                        <outlet property="jamon" destination="qew-mZ-lhL" id="AcM-4R-4x5"/>
+                        <outlet property="orderButton" destination="O5d-no-puv" id="TUL-0r-Sn1"/>
+                        <outlet property="pepperoni" destination="Mbd-uC-je0" id="vAJ-hF-UvE"/>
+                        <outlet property="pickerView" destination="F28-Ux-EDQ" id="y1H-Ik-aRi"/>
+                        <outlet property="pimiento" destination="vgt-wx-psh" id="BGk-29-gF0"/>
+                        <outlet property="piña" destination="CPq-oa-Qpr" id="2Z4-yl-7Ix"/>
+                        <outlet property="salchicha" destination="hMR-zD-ZCH" id="ux7-ic-Ynt"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="758" y="306.5"/>
         </scene>
     </scenes>
 </document>

@@ -1,6 +1,6 @@
 //
-//  InterfaceController.swift
-//  pizzaWatch WatchKit Extension
+//  VistaMasa.swift
+//  pizzaWatch
 //
 //  Created by Angel Agustín Martínez on 30/12/15.
 //  Copyright © 2015 Angel Agustín Martínez. All rights reserved.
@@ -10,21 +10,26 @@ import WatchKit
 import Foundation
 
 
-class InterfaceController: WKInterfaceController {
+class VistaMasa: WKInterfaceController {
 
-    
-    
     @IBOutlet var pickerView: WKInterfacePicker!
     
     var tamañoElegido : String = ""
+    var masaElegida : String = ""
     
-    var listaTamaños: [(String, String)] = [
-        ("Chica", "Chica"),
-        ("Mediana", "Mediana"),
-        ("Grande", "Grande")]
+    var listaMasas: [(String, String)] = [
+        ("Delgada", "Delgada"),
+        ("Crujiente", "Crujiente"),
+        ("Gruesa", "Gruesa")]
+    
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
+        
+        let c = context as! ContextoPizza
+        tamañoElegido = c.tamañoPizza
+        //NSLog("Tamaño elegido fue: \(c.tamañoPizza)")
+        
         
         // Configure interface objects here.
     }
@@ -33,7 +38,7 @@ class InterfaceController: WKInterfaceController {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         
-        let pickerItems: [WKPickerItem] = listaTamaños.map {
+        let pickerItems: [WKPickerItem] = listaMasas.map {
             let pickerItem = WKPickerItem()
             pickerItem.title = $0.0
             pickerItem.caption = $0.0
@@ -41,24 +46,25 @@ class InterfaceController: WKInterfaceController {
         }
         pickerView.setItems(pickerItems)
         pickerView?.setSelectedItemIndex(1)
-        tamañoElegido = "Mediana"
+        masaElegida = "Crujiente"
     }
 
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
     }
-    
+
     @IBAction func pickerSelectedItemChanged(value: Int) {
-        //NSLog("List Picker: \(listaTamaños[value].0) selected")
-        //NSLog("List Picker: \(listaTamaños[value].1) selected")
-        tamañoElegido = listaTamaños[value].1
+        //NSLog("List Picker: \(listaMasas[value].0) selected")
+        //NSLog("List Picker: \(listaMasas[value].1) selected")
+        masaElegida = listaMasas[value].1
     }
     
-    @IBAction func mostrarMasa() {
+    @IBAction func mostrarQueso() {
         let valorContexto = ContextoPizza()
+        
         valorContexto.estableceTamañoPizza(tamañoElegido)
-        pushControllerWithName("IdentificadorMasa", context: valorContexto)
+        valorContexto.estableceTipoMasa(masaElegida)
+        pushControllerWithName("IdentificadorQueso", context: valorContexto)
     }
-    
 }
